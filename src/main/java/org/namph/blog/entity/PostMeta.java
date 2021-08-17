@@ -3,7 +3,7 @@ package org.namph.blog.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "post_comment")
+@Table(name = "meta")
 public class PostMeta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
