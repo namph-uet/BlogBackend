@@ -3,6 +3,7 @@ package org.namph.blog.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "tag")
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

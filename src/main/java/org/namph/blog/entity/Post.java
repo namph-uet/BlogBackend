@@ -38,16 +38,4 @@ public class Post {
 
     @Column(name = "content")
     private String content;
-
-    @ManyToMany
-    Set<Category> categories;
-
-    @OneToMany
-    Set<PostComment> comments;
-
-    @ManyToMany
-    Set<Tag> tags;
-
-    @OneToMany
-    Set<PostMeta> metas;
 }

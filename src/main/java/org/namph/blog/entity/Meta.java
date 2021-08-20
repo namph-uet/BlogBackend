@@ -4,17 +4,17 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "meta")
-public class PostMeta {
+public class Meta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private String id;
 
     @Column(name = "postId")
-    private int postId;
-
-    @Column(name = "key")
-    private String key;
+    private String postId;
 
     @Column(name = "content")
     private String content;
+
+    @Column(name = "key")
+    private String key;
 }
