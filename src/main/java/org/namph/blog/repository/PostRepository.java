@@ -20,11 +20,21 @@ public class PostRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Post findById(String id) {
         Session session = this.sessionFactory.getCurrentSession();
         return session.get(Post.class, id);
     }
 
+
+    /**
+     *
+     * @return
+     */
     public List getAllPostIntro() {
         Session session = this.sessionFactory.getCurrentSession();
         StringBuilder sql = new StringBuilder();
@@ -39,5 +49,16 @@ public class PostRepository {
         query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 
         return query.list();
+    }
+
+    /**
+     *
+     * @param post
+     * @return
+     */
+    public int saveNewPost(Post post) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.save(post);
+        return 1;
     }
 }

@@ -16,6 +16,11 @@ public class UserRepository {
     @Autowired
     private SessionFactory sessionFactory;
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Post findById(String id) {
         Session session = this.sessionFactory.getCurrentSession();
         return session.get(Post.class, id);
