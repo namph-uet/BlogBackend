@@ -14,7 +14,7 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    public Post getPost(String id) {
+    public Post getPost(int id) {
         return postRepository.findById(id);
     }
 }

@@ -2,6 +2,8 @@ package org.namph.blog.controller;
 
 import org.namph.blog.entity.Post;
 import org.namph.blog.service.PostService;
+import org.namph.blog.util.ResponseBodyUtil;
+import org.namph.blog.util.ResponseStatusUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +23,11 @@ public class PostController {
     private PostService postService;
 
     @GetMapping()
-    public ResponseEntity getPost(@RequestParam(defaultValue = "0") String id) {
+    public ResponseEntity getPost(@RequestParam(defaultValue = "0") int id) {
+        ResponseBodyUtil responseBodyUtil = new ResponseBodyUtil();
         Post post = postService.getPost(id);
-        return ResponseEntity.ok().body(post);
+        responseBodyUtil.setStatus(ResponseStatusUtil.SUCCESS);
+        responseBodyUtil.setData(post);
+        return ResponseEntity.ok().body(responseBodyUtil);
     }
 }

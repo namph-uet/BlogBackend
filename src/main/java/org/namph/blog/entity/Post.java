@@ -10,13 +10,14 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "authorId")
+
+    @Column(name = "author_id")
     private int authorId;
 
     @Column(name = "title")
     private String title;
 
-    @Column(name = "metaTitle")
+    @Column(name = "meta_title")
     private String metaTitle;
 
     @Column(name = "slug")
@@ -28,13 +29,13 @@ public class Post {
     @Column(name = "published")
     private boolean published;
 
-    @Column(name = "createAt")
+    @Column(name = "create_at")
     private LocalDateTime createAt;
 
-    @Column(name = "updateAt")
+    @Column(name = "update_at")
     private LocalDateTime updateAt;
 
-    @Column(name = "publishedAt")
+    @Column(name = "published_at")
     private LocalDateTime publishedAt;
 
     @Column(name = "content")
