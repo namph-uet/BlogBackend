@@ -19,15 +19,15 @@ public class BeanConfig {
     @Autowired
     private Environment env;
 
-    @Bean(name = "dataSource")
-    public DataSource getDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
-        dataSource.setUrl(env.getProperty("spring.datasource.url"));
-        dataSource.setUsername(env.getProperty("spring.datasource.username"));
-        dataSource.setPassword(env.getProperty("spring.datasource.password"));
-        return dataSource;
-    }
+//    @Bean(name = "dataSource")
+//    public DataSource getDataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
+//        dataSource.setUrl(env.getProperty("spring.datasource.url"));
+//        dataSource.setUsername(env.getProperty("spring.datasource.username"));
+//        dataSource.setPassword(env.getProperty("spring.datasource.password"));
+//        return dataSource;
+//    }
     @Autowired
     @Bean(name = "sessionFactory")
     public SessionFactory getSessionFactory(DataSource dataSource) throws Exception {

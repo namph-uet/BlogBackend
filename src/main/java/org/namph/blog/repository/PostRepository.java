@@ -59,6 +59,7 @@ public class PostRepository {
     public int saveNewPost(Post post) {
         Session session = this.sessionFactory.getCurrentSession();
         session.save(post);
+        session.close();
         return 1;
     }
 }

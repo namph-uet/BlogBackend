@@ -40,4 +40,48 @@ public class Post {
 
     @Column(name = "content")
     private String content;
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCreateAt(LocalDateTime createAt) {
+        this.createAt = createAt;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setMetaTitle(String metaTitle) {
+        this.metaTitle = metaTitle;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
+    public void setPublishedAt(LocalDateTime publishedAt) {
+        this.publishedAt = publishedAt;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setUpdateAt(LocalDateTime updateAt) {
+        this.updateAt = updateAt;
+    }
 }
