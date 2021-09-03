@@ -7,11 +7,11 @@ import javax.persistence.*;
 public class PostTag {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private int id;
 
     @Column(name = "postId")
-    private String postId;
+    private int postId;
 
     @Column(name = "tagId")
-    private String tagId;
+    private int tagId;
 }

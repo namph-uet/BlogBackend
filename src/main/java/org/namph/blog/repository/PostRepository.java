@@ -1,9 +1,6 @@
 package org.namph.blog.repository;
 
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.namph.blog.entity.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,11 +36,11 @@ public class PostRepository {
         Session session = this.sessionFactory.getCurrentSession();
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SElECT p.meta_title, p.summary, p.published, p.published_at \n");
-        sql.append("FROM post as p LEFT JOIN post_tags as pts ON p.id = pts.post_id\n");
-        sql.append("INNER JOIN tag as t ON pts.tags_id = t.id\n");
-        sql.append("INNER JOIN post_metas as pm ON p.id = pm.post_id\n");
-        sql.append("INNER JOIN \"user\" as us ON us.id = p.author_id");
+        sql.append("SElECT p.meta_title, p.summary, p.published, p.published_at");
+        sql.append(" FROM post as p LEFT JOIN post_tag as pts ON p.id = pts.post_id");
+        sql.append(" LEFT JOIN tag as t ON pts.tag_id = t.id");
+        sql.append(" LEFT JOIN meta as pm ON p.id = pm.post_id");
+        sql.append(" LEFT JOIN \"user\" as us ON us.id = p.author_id");
 
         SQLQuery query = session.createSQLQuery(sql.toString());
         query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -57,9 +54,25 @@ public class PostRepository {
      * @return
      */
     public int saveNewPost(Post post) {
-        Session session = this.sessionFactory.getCurrentSession();
+        Session session = this.sessionFactory.openSession();
+        session.beginTransaction();
         session.save(post);
+        session.getTransaction().commit();
         session.close();
         return 1;
+    }
+
+    public List getAllPostOrderById() {
+        Session session = this.sessionFactory.getCurrentSession();
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SElECT * ");
+        sql.append("FROM post ");
+        sql.append("ORDER BY id ASC");
+
+        SQLQuery query = session.createSQLQuery(sql.toString());
+        query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+
+        return query.list();
     }
 }

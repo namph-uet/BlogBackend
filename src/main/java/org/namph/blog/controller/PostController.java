@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * author: namph
@@ -23,6 +25,7 @@ import java.util.Date;
 @RestController
 @RequestMapping("post")
 public class PostController {
+    private static final String FIND_ALL_FLG = "-1";
 
     @Autowired
     private PostService postService;
@@ -31,11 +34,19 @@ public class PostController {
     private PostRepository postRepository;
 
     @GetMapping
-    public ResponseEntity getPost(@RequestParam(defaultValue = "0") int id) {
+    public ResponseEntity getPost(@RequestParam(defaultValue = FIND_ALL_FLG) int id) {
         ResponseBodyUtil responseBodyUtil = new ResponseBodyUtil();
-        Post post = postService.getPost(id);
+
+        if(id == Integer.parseInt(FIND_ALL_FLG)) {
+            List allPost = new ArrayList();
+            allPost = postRepository.getAllPostIntro();
+            responseBodyUtil.setData(allPost);
+        } else {
+            Post post = postService.getPost(id);
+            responseBodyUtil.setData(post);
+        }
+
         responseBodyUtil.setStatus(ResponseStatusUtil.SUCCESS);
-        responseBodyUtil.setData(post);
         return ResponseEntity.ok().body(responseBodyUtil);
     }
 

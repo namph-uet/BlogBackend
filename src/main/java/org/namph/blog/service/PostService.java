@@ -5,6 +5,8 @@ import org.namph.blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * author: namph
  * date: 16/08/2021
@@ -17,4 +19,6 @@ public class PostService {
     public Post getPost(int id) {
         return postRepository.findById(id);
     }
+
+
 }
