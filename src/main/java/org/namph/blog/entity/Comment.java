@@ -11,7 +11,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "postId")
+    @Column(name = "post_id")
     private int postId;
 
     @Column(name = "title")
@@ -20,12 +20,12 @@ public class Comment {
     @Column(name = "published")
     private boolean published;
 
-    @Column(name = "createAt")
+    @Column(name = "create_at")
     private LocalDateTime createAt;
 
-    @Column(name = "publishedAt")
+    @Column(name = "published_at")
     private LocalDateTime publishedAt;
 
-    @Column(name = "Content")
-    private String Content;
+    @Column(name = "content")
+    private String content;
 }

@@ -7,10 +7,10 @@ import javax.persistence.*;
 public class Meta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private int id;
 
-    @Column(name = "postId")
-    private String postId;
+    @Column(name = "post_id")
+    private int postId;
 
     @Column(name = "content")
     private String content;

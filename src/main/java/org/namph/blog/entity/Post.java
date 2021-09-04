@@ -2,13 +2,14 @@ package org.namph.blog.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "post")
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "author_id")
@@ -40,6 +41,13 @@ public class Post {
 
     @Column(name = "content")
     private String content;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "post_tag",
+            joinColumns = { @JoinColumn(name = "post_id")},
+            inverseJoinColumns = { @JoinColumn(name = "tag_id")}
+    )
+    private Set<Tag> tags = new HashSet<>();
 
     public void setAuthorId(int authorId) {
         this.authorId = authorId;

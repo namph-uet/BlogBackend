@@ -8,6 +8,7 @@ import org.namph.blog.util.ResponseBodyUtil;
 import org.namph.blog.util.ResponseStatusUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +30,10 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping
-    public ResponseEntity createUser(@RequestBody CreateUserRequest createUserRequest) {
+    public ResponseEntity createUser(@Validated @RequestBody CreateUserRequest createUserRequest) {
         User user = new User();
         user.setEmail(createUserRequest.getEmail());
-        user.setFirsName(createUserRequest.getFirsName());
+        user.setFirsName(createUserRequest.getFirstName());
         user.setLastName(createUserRequest.getLastName());
         user.setIntro(createUserRequest.getIntro());
         user.setMobile(createUserRequest.getMobile());

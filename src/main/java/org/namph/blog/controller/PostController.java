@@ -1,7 +1,7 @@
 package org.namph.blog.controller;
 
 import org.namph.blog.entity.Post;
-import org.namph.blog.repository.PostRepository;
+import org.namph.blog.repository.PostRepositoryInstance;
 import org.namph.blog.request.PostRequest;
 import org.namph.blog.service.PostService;
 import org.namph.blog.util.ResponseBodyUtil;
@@ -12,10 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,7 +29,7 @@ public class PostController {
     private PostService postService;
 
     @Autowired
-    private PostRepository postRepository;
+    private PostRepositoryInstance postRepositoryInstance;
 
     @GetMapping
     public ResponseEntity getPost(@RequestParam(defaultValue = FIND_ALL_FLG) int id) {
@@ -39,7 +37,7 @@ public class PostController {
 
         if(id == Integer.parseInt(FIND_ALL_FLG)) {
             List allPost = new ArrayList();
-            allPost = postRepository.getAllPostIntro();
+            allPost = postRepositoryInstance.getAllPostIntro();
             responseBodyUtil.setData(allPost);
         } else {
             Post post = postService.getPost(id);
@@ -66,7 +64,7 @@ public class PostController {
         post.setPublishedAt(LocalDateTime.now());
         post.setPublished(true);
 
-        int result = postRepository.saveNewPost(post);
+        int result = postRepositoryInstance.saveNewPost(post);
         ResponseBodyUtil responseBodyUtil = new ResponseBodyUtil();
         HttpStatus httpStatus;
         if(result > 0) {

@@ -1,23 +1,23 @@
 package org.namph.blog.entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tag")
 public class Tag {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "tag_name")
+    private String tagName;
 
-    @Column(name = "metaTitle")
-    private String metaTitle;
-
-    @Column(name = "slug")
-    private String slug;
-
-    @Column(name = "content")
-    private String content;
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "tags"
+    )
+    Set<Post> posts = new HashSet<>();
 }
