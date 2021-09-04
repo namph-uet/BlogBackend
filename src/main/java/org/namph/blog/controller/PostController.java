@@ -69,20 +69,11 @@ public class PostController {
         post.setUpdateAt(LocalDateTime.now());
         post.setPublishedAt(LocalDateTime.now());
         post.setPublished(true);
-
-        // save post
-        int result = postRepository.saveNewPost(post);
-
         // find firs image url
         String image = postService.findImageUrl(postRequest.getContent());
-        Meta meta = new Meta();
-        int postId = postRepository.findIdByCreateAt(createAt);
-        meta.setPostId(postId);
-        meta.setKey(Meta.IMAGE_KEY);
-        meta.setContent(image);
-
-        //save meta
-        metaRepository.saveMeta(meta);
+        post.setImageIntro(image);
+        // save post
+        int result = postRepository.saveNewPost(post);
 
         ResponseBodyUtil responseBodyUtil = new ResponseBodyUtil();
         HttpStatus httpStatus;

@@ -42,6 +42,9 @@ public class Post {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "image_intro")
+    private String imageIntro;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "post_tag",
             joinColumns = { @JoinColumn(name = "post_id")},
@@ -91,5 +94,9 @@ public class Post {
 
     public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public void setImageIntro(String imageIntro) {
+        this.imageIntro = imageIntro;
     }
 }

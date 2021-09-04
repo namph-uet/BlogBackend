@@ -34,7 +34,7 @@ public class PostService {
         final Matcher matcher = pattern.matcher(postContent);
 
         if (matcher.find()) {
-            result = matcher.group(0);
+            result = matcher.group(1);
         }
 
         return result;

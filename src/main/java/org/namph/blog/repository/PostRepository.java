@@ -5,6 +5,7 @@ import org.hibernate.transform.AliasToBeanConstructorResultTransformer;
 import org.hibernate.transform.AliasToEntityMapResultTransformer;
 import org.namph.blog.dto.PostIntroDto;
 import org.namph.blog.entity.Post;
+import org.namph.blog.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -43,8 +44,8 @@ public class PostRepository {
         Session session = this.sessionFactory.getCurrentSession();
         StringBuilder sql = new StringBuilder();
         sql.append("SElECT p.id, p.summary, us.last_name, us.first_name,");
-        sql.append(" p.published_at, p.title, ARRAY_TO_STRING(ARRAY_AGG(t.tag_name),'&') as tags");
-        sql.append(" ARRAY_TO_STRING(ARRAY_AGG(pm.key),'&') as meta");
+        sql.append(" p.published_at, p.title, ARRAY_TO_STRING(ARRAY_AGG(t.tag_name),'&') as tags,");
+        sql.append(" p.image_intro");
         sql.append(" FROM post as p LEFT JOIN post_tag as pts ON p.id = pts.post_id");
         sql.append(" LEFT JOIN tag as t ON pts.tag_id = t.id");
         sql.append(" LEFT JOIN meta as pm ON p.id = pm.post_id");
@@ -65,7 +66,7 @@ public class PostRepository {
                     e.get("published_at").toString(),
                     e.get("title").toString(),
                     e.get("tags").toString(),
-                    e.get("meta").toString()
+                    CommonUtil.isNull(e.get("image_intro")) ? null : e.get("image_intro").toString()
             );
             dtoResult.add(dtoObject);
         }
