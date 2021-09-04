@@ -7,7 +7,7 @@ public class CreateUserRequest {
 
     @NotNull
     @NotBlank
-    private String firsName;
+    private String firstName;
     @NotNull
     @NotBlank
     private String lastName;
@@ -26,8 +26,8 @@ public class CreateUserRequest {
         return email;
     }
 
-    public String getFirsName() {
-        return firsName;
+    public String getFirstName() {
+        return firstName;
     }
 
     public String getIntro() {

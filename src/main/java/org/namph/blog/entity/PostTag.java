@@ -9,9 +9,9 @@ public class PostTag {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "postId")
+    @Column(name = "post_id")
     private int postId;
 
-    @Column(name = "tagId")
+    @Column(name = "tag_id")
     private int tagId;
 }

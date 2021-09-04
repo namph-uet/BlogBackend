@@ -11,4 +11,5 @@ public class PostIntroDto {
     private String summary;
     private boolean published;
     private LocalDateTime published_at;
+
 }
