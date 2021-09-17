@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
  */
 @Service
 public class PostService {
+    private static final String IMG_SRC_REGEX = "<img src=\\\"([^\\\"]+)";
     @Autowired
     private PostRepository postRepository;
 
@@ -28,9 +29,8 @@ public class PostService {
      */
     public String findImageUrl(String postContent) {
         String result = "";
-        final String regex = "!\\[.*?\\]\\((.*?)\\)";
 
-        final Pattern pattern = Pattern.compile(regex);
+        final Pattern pattern = Pattern.compile(IMG_SRC_REGEX);
         final Matcher matcher = pattern.matcher(postContent);
 
         if (matcher.find()) {

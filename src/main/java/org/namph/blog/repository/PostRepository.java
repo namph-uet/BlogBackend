@@ -66,7 +66,7 @@ public class PostRepository {
                     e.get("published_at").toString(),
                     e.get("title").toString(),
                     e.get("tags").toString(),
-                    CommonUtil.isNull(e.get("image_intro")) ? null : e.get("image_intro").toString()
+                    CommonUtil.isNull(e.get("image_intro")) ? "" : e.get("image_intro").toString()
             );
             dtoResult.add(dtoObject);
         }
